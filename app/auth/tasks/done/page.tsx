@@ -54,7 +54,7 @@ function Done() {
   if (isLoading) return <p className='h-screen flex items-center gap-4 justify-center'><Loadercomponent/> <p>Loading...</p></p>;
 
   if (error instanceof Error) {
-    return <p>{`Error fetching data. ${error.message}`}</p>;
+    return <p className='h-screen flex items-center gap-4 justify-center'>{`Error fetching data. ${error.message}`}</p>;
   }
 
   const handleCheckboxChange = (task: ITask) => {
