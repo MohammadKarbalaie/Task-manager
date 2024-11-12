@@ -5,6 +5,7 @@ import { updateTask } from "../../../api/services/update-services";
 import { httpClient } from "../../../api/client";
 import { urls } from "../../../api/urls";
 import { ITask } from "@/app/types/ITask";
+import Loadercomponent from "@/app/components/Loadercomponent";
 
 function Done() {
   const queryClient = useQueryClient();
@@ -50,7 +51,7 @@ function Done() {
     },
   });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <p className='h-screen flex items-center gap-4 justify-center'><Loadercomponent/> <p>Loading...</p></p>;
 
   if (error instanceof Error) {
     return <p>{`Error fetching data. ${error.message}`}</p>;
