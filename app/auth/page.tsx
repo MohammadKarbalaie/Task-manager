@@ -22,7 +22,7 @@ export default function LoginPage() {
       const user = await signup({ email, password, username });
       if (user) {
         console.log("Signed up successfully:", user);
-        setIsLogin(true); // نمایش فرم لاگین پس از ثبت‌نام موفق
+        setIsLogin(true);  
       }
     }
   };

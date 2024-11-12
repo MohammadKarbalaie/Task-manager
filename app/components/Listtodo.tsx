@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react';  
 import CreateModal from './CreateModal';  
-import EditModal from './EditModal'; // وارد کردن کامپوننت EditModal  
+import EditModal from './EditModal';    
 import { fetchTasks } from '../api/services/list-services';  
 import { ITask } from '../types/ITask';  
 import { deleteTask } from '../api/services/delete-services';  
