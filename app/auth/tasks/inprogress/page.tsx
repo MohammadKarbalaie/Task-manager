@@ -59,7 +59,7 @@ function InProgress() {
   return (
     <div className="p-6 h-screen">
       <div className="bg-[#fceede] w-full flex flex-col gap-4 p-4 h-screen">
-        <p className="text-xl p-2 font-semibold">Loading</p>
+        <p className="text-xl p-2 font-semibold">in progress</p>
 
         {tasks?.map((task) => (
           <div className="flex gap-4 items-center" key={task.id}>

@@ -44,8 +44,8 @@ const CreateModal: React.FC<CreateModalProps> = ({
       className="fixed inset-0 z-10 flex items-center justify-center
      bg-black bg-opacity-50"
     >
-      <div className="bg-gray-300 w-[640px] p-6 rounded-xl shadow-xl">
-        <h2 className="text-xl mb-4 text-gray-800 rounded-xl bg-sky-400 py-2 px-4">
+      <div className="bg-[#ebe7ff] w-[640px] p-6 rounded-xl shadow-xl">
+        <h2 className="text-xl mb-4 text-gray-100 rounded-xl bg-[#1f2937] py-2 px-4">
           Create New Task
         </h2>
         <form onSubmit={handleSubmit}>
@@ -94,7 +94,7 @@ const CreateModal: React.FC<CreateModalProps> = ({
           <div className="flex items-center justify-center">
             <button
               type="submit"
-              className="bg-blue-500 text-white p-2 rounded"
+              className="bg-[#1f2937] text-white p-2 rounded"
             >
               Create Task
             </button>

@@ -47,7 +47,7 @@ function Listtodo() {
     Low: "bg-[#ebe7ff]",
   };
 
-  const renderTasksByPriority = (priority: "High" | "Mid" | "Low") => (
+  const TasksByPriority = (priority: "High" | "Mid" | "Low") => (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {tasks
         .filter((task) => task.priority === priority)
@@ -99,15 +99,15 @@ function Listtodo() {
       />
       <div className="mb-8">
         <h2 className="text-xl sm:text-2xl font-semibold mb-4">High priority</h2>
-        {renderTasksByPriority("High")}
+        {TasksByPriority("High")}
       </div>
       <div className="mb-8">
         <h2 className="text-xl sm:text-2xl font-semibold mb-4">Medium priority</h2>
-        {renderTasksByPriority("Mid")}
+        {TasksByPriority("Mid")}
       </div>
       <div className="mb-8">
         <h2 className="text-xl sm:text-2xl font-semibold mb-4">Low priority</h2>
-        {renderTasksByPriority("Low")}
+        {TasksByPriority("Low")}
       </div>
     </div>
   );

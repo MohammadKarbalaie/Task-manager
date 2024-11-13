@@ -50,9 +50,9 @@ const EditModal: React.FC<EditModalProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-gray-300 w-[640px] p-6 rounded-xl shadow-xl">
+      <div className="bg-[#ebe7ff] w-[640px] p-6 rounded-xl shadow-xl">
         <form onSubmit={handleSubmit}>
-          <h2 className="text-lg mb-4 bg-zinc-500 rounded-xl text-white py-2 px-6">Edit Task</h2>
+          <h2 className="text-lg mb-4 bg-[#1f2937] rounded-xl text-white py-2 px-6">Edit Task</h2>
           <label className="block mb-2">
             Title:
             <input
@@ -101,7 +101,7 @@ const EditModal: React.FC<EditModalProps> = ({
           <div className="flex justify-between mt-4">
             <button
               type="submit"
-              className="bg-blue-500 text-white py-2 px-4 rounded"
+              className="bg-[#1f2937] text-white py-2 px-4 rounded"
             >
               Save
             </button>
