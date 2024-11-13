@@ -1,13 +1,13 @@
-"use client"
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { logout } from '../api/services/auth-services'; 
+"use client";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { logout } from "../api/services/auth-services";
 
 function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const authToken = localStorage.getItem('authToken');
+    const authToken = localStorage.getItem("authToken");
     setIsLoggedIn(!!authToken);
   }, []);
 
@@ -31,7 +31,7 @@ function Navbar() {
           <li className="px-4 py-2 text-gray-200 hover:text-black rounded-xl hover:bg-zinc-300 transition hover:scale-105">
             <Link href="/auth/tasks">Tasks</Link>
           </li>
-          
+
           {isLoggedIn && (
             <>
               <li className="px-4 py-2 text-gray-200 hover:text-black rounded-xl hover:bg-zinc-300 transition hover:scale-105">
@@ -42,7 +42,7 @@ function Navbar() {
               </li>
             </>
           )}
-          
+
           <li className="px-4 py-2 text-gray-200 hover:text-black rounded-xl hover:bg-zinc-300 transition hover:scale-105">
             {isLoggedIn ? (
               <button onClick={handleLogout} className="focus:outline-none">

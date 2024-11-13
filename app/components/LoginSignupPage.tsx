@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Lock, User, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { login, signup } from "../api/services/auth-services";
+import Loadercomponent from "./Loadercomponent";
 
 const schema = z.object({
   email: z.string().email("Enter a valid email"),
@@ -49,6 +50,7 @@ const InputField: React.FC<InputFieldProps> = ({
 
 const LoginSignupPage: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const [loading, setLoading] = useState(false); 
   const router = useRouter();
 
   const toggleMode = () => setIsLogin(!isLogin);
@@ -62,6 +64,8 @@ const LoginSignupPage: React.FC = () => {
   });
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
+    setLoading(true); 
+
     if (isLogin) {
       const user = await login(data.email, data.password);
       if (user) {
@@ -83,6 +87,8 @@ const LoginSignupPage: React.FC = () => {
         console.error("Username is required for signup.");
       }
     }
+
+    setLoading(false);  
   };
 
   return (
@@ -137,6 +143,8 @@ const LoginSignupPage: React.FC = () => {
                   <ArrowRight className="ml-2" size={20} />
                 </button>
               </form>
+
+              {loading && <p className="flex items-center justify-center mt-8"><Loadercomponent/></p>}
             </motion.div>
           </AnimatePresence>
         </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function loadercomponent() {
+function Loadercomponent() {
   return (
     
 <div role="status">
@@ -14,4 +14,4 @@ function loadercomponent() {
   )
 }
 
-export default loadercomponent
+export default Loadercomponent
