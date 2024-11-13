@@ -17,7 +17,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="w-full bg-blue-600 p-4 flex flex-col md:flex-row items-center gap-4 md:gap-8 justify-between">
+    <nav className="w-full bg-[#1f2937] p-4 flex flex-col md:flex-row items-center gap-4 md:gap-8 justify-between">
       <div className="text-center md:text-left">
         <p className="text-2xl font-medium text-gray-200 cursor-pointer hover:shadow-yellow-300 rounded-xl transition hover:scale-105">
           Task Manager
