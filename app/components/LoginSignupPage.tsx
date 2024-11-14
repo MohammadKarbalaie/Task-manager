@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import React, { useState } from "react";
 import { useForm, SubmitHandler, UseFormRegister } from "react-hook-form";
@@ -8,6 +9,8 @@ import { Mail, Lock, User, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { login, signup } from "../api/services/auth-services";
 import Loadercomponent from "./Loadercomponent";
+import { showToastErr, Toast } from "../lib/toastConfig";
+
 
 const schema = z.object({
   email: z.string().email("Enter a valid email"),
@@ -21,7 +24,7 @@ interface InputFieldProps {
   icon: React.ElementType;
   placeholder: string;
   type: string;
-  register: UseFormRegister<FormData>; 
+  register: UseFormRegister<FormData>;
   name: keyof FormData;
   error?: string;
 }
@@ -50,7 +53,7 @@ const InputField: React.FC<InputFieldProps> = ({
 
 const LoginSignupPage: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const toggleMode = () => setIsLogin(!isLogin);
@@ -64,31 +67,42 @@ const LoginSignupPage: React.FC = () => {
   });
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    setLoading(true); 
+    setLoading(true);
 
-    if (isLogin) {
-      const user = await login(data.email, data.password);
-      if (user) {
-        console.log("Logged in successfully:", user);
-        router.push("/auth/tasks");
-      }
-    } else {
-      if (data.username) { 
-        const user = await signup({
-          email: data.email,
-          password: data.password,
-          username: data.username,
-        });
+    try {
+      if (isLogin) {
+        const user = await login(data.email, data.password);
         if (user) {
-          console.log("Signed up successfully:", user);
-          setIsLogin(true);      
+          console.log("Logged in successfully:", user);
+          showToastErr(`Logged in successfully: ${user}`,'success');
+         setTimeout(() => {
+          router.push("/auth/tasks");
+         }, 5000);
+        } else {
+          showToastErr("Login failed. Please check your credentials.");
         }
       } else {
-        console.error("Username is required for signup.");
+        if (data.username) {
+          const user = await signup({
+            email: data.email,
+            password: data.password,
+            username: data.username,
+          });
+          if (user) {
+            showToastErr("Signed up successfully. Please log in.");
+            setIsLogin(true);
+          } else {
+            showToastErr("Signup failed. Try again later.");
+          }
+        } else {
+          showToastErr("Username is required for signup.");
+        }
       }
+    } catch (error) {
+      showToastErr("An unexpected error occurred. Please try again.");
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);  
   };
 
   return (
@@ -143,8 +157,11 @@ const LoginSignupPage: React.FC = () => {
                   <ArrowRight className="ml-2" size={20} />
                 </button>
               </form>
-
-              {loading && <p className="flex items-center justify-center mt-8"><Loadercomponent/></p>}
+              {loading && (
+                <p className="flex items-center justify-center mt-8">
+                  <Loadercomponent />
+                </p>
+              )}
             </motion.div>
           </AnimatePresence>
         </div>
@@ -172,6 +189,7 @@ const LoginSignupPage: React.FC = () => {
           </button>
         </div>
       </div>
+      <Toast /> 
     </div>
   );
 };
