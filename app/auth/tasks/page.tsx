@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import CreateModal from "../../components/CreateModal";
 import EditModal from "../../components/EditModal";
 import { fetchTasks } from "../../api/services/list-services";
-import { ITask } from "../../types/ITask";
 import { deleteTask } from "../../api/services/delete-services";
+import { ITask } from "../../types/ITask";
 import { FiEdit2 } from "react-icons/fi";
 import { TiDelete } from "react-icons/ti";
 
@@ -36,6 +36,21 @@ function Listtodo() {
     );
   };
 
+  const handleDeleteTask = async (id: string) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this task?");
+    if (!confirmDelete) return;
+
+    try {
+      await deleteTask(id);
+      // حذف وظیفه از آرایه
+      setTasks((prev) => prev.filter((task) => task.id !== id));
+      console.log("Task deleted successfully");
+    } catch (error) {
+      console.error("Error deleting task:", error);
+      alert("An error occurred while deleting the task. Please try again.");
+    }
+  };
+
   const handleEditTask = (task: ITask) => {
     setTaskToEdit(task);
     setIsEditModalOpen(true);
@@ -65,7 +80,7 @@ function Listtodo() {
                 <FiEdit2 />
               </p>
               <p
-                onClick={() => deleteTask(task.id)}
+                onClick={() => handleDeleteTask(task.id)}
                 className="p-2 cursor-pointer rounded-md bg-red-500 text-white"
               >
                 <TiDelete />

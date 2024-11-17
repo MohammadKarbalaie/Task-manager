@@ -45,6 +45,7 @@ export async function signup(data: SignupData): Promise<AuthResponse | null> {
     return null;
   }
 }
+
 export async function refreshAuthToken(): Promise<string | null> {
   try {
     const authData = await client.collection('users').authRefresh() as unknown as AuthResponse;
